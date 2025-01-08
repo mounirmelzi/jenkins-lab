@@ -9,8 +9,7 @@ pipeline {
         }
         stage('Generate Cucumber Reports') {
             steps {
-                bat './gradlew generateCucumberReports'
-                archiveArtifacts artifacts: 'build/reports/cucumber/**', allowEmptyArchive: true
+                cucumber 'reports/*.json'
             }
         }
         stage('Generate JaCoCo Coverage Report') {
