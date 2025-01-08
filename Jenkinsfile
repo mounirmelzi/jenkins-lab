@@ -55,6 +55,10 @@ pipeline {
         always {
             script {
                 def status = currentBuild.result ?: 'SUCCESS'
+                slackSend(
+                    color: status == 'SUCCESS' ? 'good' : 'danger',
+                    message: "OGL TP7 - Java CI with Gradle. Status: ${status}."
+                )
                 mail to: "${env.MAIL_TO}",
                      subject: "OGL TP7 - Java CI with Gradle - ${status}",
                      body: "Status: ${status}"
