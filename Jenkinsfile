@@ -9,7 +9,8 @@ pipeline {
         }
         stage('Generate Cucumber Reports') {
             steps {
-                cucumber 'reports/*.json'
+                cucumber '**/reports/*.json'
+                archiveArtifacts artifacts: 'build/reports/cucumber/**', allowEmptyArchive: true
             }
         }
         stage('Generate JaCoCo Coverage Report') {
