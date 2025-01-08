@@ -19,6 +19,20 @@ pipeline {
                 archiveArtifacts artifacts: 'build/reports/jacoco/**', allowEmptyArchive: true
             }
         }
+        stage('SonarQube Scan') {
+            steps {
+                withSonarQubeEnv('sonar') {
+                    bat './gradlew sonar'
+                }
+            }
+        }
+        stage('SonarQube Quality Gate Check') {
+            steps {
+                script {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
         stage('Build with Gradle Wrapper') {
             steps {
                 bat './gradlew build'
