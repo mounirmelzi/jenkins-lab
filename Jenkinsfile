@@ -60,8 +60,8 @@ pipeline {
                     message: "OGL TP7 - Java CI with Gradle. Status: ${status}."
                 )
                 mail to: "${env.MAIL_TO}",
-                     subject: "OGL TP7 - Java CI with Gradle - ${status}",
-                     body: "Status: ${status}"
+                    subject: "OGL TP7 - Java CI with Gradle (Jenkins)",
+                    body: "Status: ${status}"
             }
         }
     }
