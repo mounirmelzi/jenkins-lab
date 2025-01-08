@@ -13,4 +13,14 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            script {
+                def status = currentBuild.result ?: 'SUCCESS'
+                mail to: "${env.MAIL_TO}",
+                     subject: "OGL TP7 - Java CI with Gradle - ${status}",
+                     body: "Status: ${status}"
+            }
+        }
+    }
 }
